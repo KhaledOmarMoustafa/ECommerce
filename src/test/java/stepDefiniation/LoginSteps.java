@@ -8,57 +8,48 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.HooksPage;
 import pages.LoginPage;
 
 public class LoginSteps {
-    LoginPage login ;
+    LoginPage login = new LoginPage() ;
 
-    WebDriver driver;
+    HooksPage hooksPage = new HooksPage();
+
 
     @Given("user open the browser and go to the home page")
     public void open_browser() throws InterruptedException {
-        driver =  new ChromeDriver();
-        login =  new LoginPage();
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-
-
-        driver.manage().window().maximize();
-        Thread.sleep(3000);
-
-
-        driver.navigate().to("https://demo.nopcommerce.com/");
-
+        hooksPage.OpenBrowser();
     }
     @When("user click on login")
     public void login() throws InterruptedException {
 
-        login.clickLogin(driver);
+        login.clickLogin(hooksPage.driver);
         Thread.sleep(1000);
 
 
     }
     @And("^Entering the Email\"(.*)\"$")
      public void enter_email(String mail) throws InterruptedException {
-        login.eml(driver,mail);
+        login.eml(hooksPage.driver, mail);
         Thread.sleep(1000);
 
     }
     @And("^Entering the Password\"(.*)\"$")
     public void enter_password(String ps) throws InterruptedException {
 
-        login.ps(driver,ps);
+        login.ps(hooksPage.driver, ps);
         Thread.sleep(1000);
 
     }
     @And("user click login")
     public void click_login() throws InterruptedException {
-        login.loginButton(driver);
+        login.loginButton(hooksPage.driver);
         Thread.sleep(1000);
     }
     @Then("User is Able to login and redirected to the home page")
     public void home_page() throws InterruptedException {
-        String url = driver.getCurrentUrl();
+        String url = hooksPage.driver.getCurrentUrl();
         Assert.assertEquals( "https://demo.nopcommerce.com/",url);
         System.out.println(url);
         Thread.sleep(1000);
@@ -70,6 +61,6 @@ public class LoginSteps {
 
         Thread.sleep(2000);
 
-        driver.quit();
+        hooksPage.CloseBrowser();
     }
 }

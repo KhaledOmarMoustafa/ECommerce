@@ -17,4 +17,4 @@ Feature: Add different products to the shopping cart
     And user Add another Item
     Then user click his shopping cart
     And user is redirected to the shopping cart
-    And close  Browser
+    And close the browser

@@ -18,4 +18,4 @@ Feature: Add different products to the compare list
     And user Add another Item to the compare list
     Then user Click his compare list
     And user is redirected to the compare list page
-    And user Closes the Browser
+    And Close the browser

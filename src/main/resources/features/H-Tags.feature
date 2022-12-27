@@ -12,4 +12,4 @@ Feature: Filter By the Tags
     And user chooses a sub category
     And user Chooses a tag
     Then page is filtered by Tag
-    And Closes Browsers
+    And User Close the browser

@@ -14,7 +14,7 @@ Feature: user can search for any product and swicth between currencies and selec
     And user enter his search"HTC One M8 Android L 5.0 Lollipop"
     And user click on search Button
     Then user is redirected to what he searched for
-    And Close The Browser
+    And User close the browser
 
 
 

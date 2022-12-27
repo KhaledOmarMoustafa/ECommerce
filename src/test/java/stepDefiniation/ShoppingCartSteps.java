@@ -8,59 +8,49 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.HooksPage;
 import pages.ShoppingCartPage;
 import pages.TagsPage;
 
 public class ShoppingCartSteps {
-    ShoppingCartPage shoppingCartPage;
+    ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
 
-    WebDriver driver;
+    HooksPage hooksPage = new HooksPage();
 
     @Given("user open browser")
     public void open_browser() throws InterruptedException {
-        driver =  new ChromeDriver();
-        shoppingCartPage = new ShoppingCartPage();
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-
-
-        driver.manage().window().maximize();
-        Thread.sleep(3000);
-
-
-        driver.navigate().to("https://demo.nopcommerce.com/");
-
+    hooksPage.OpenBrowser();
     }
     @When("user click the login button")
     public void login() throws InterruptedException {
 
-        shoppingCartPage.clickLogin(driver);
+        shoppingCartPage.clickLogin(hooksPage.driver);
         Thread.sleep(1000);
 
 
     }
     @And("^user Enters Email\"(.*)\"$")
     public void enter_email(String mail) throws InterruptedException {
-        shoppingCartPage.eml(driver,mail);
+        shoppingCartPage.eml(hooksPage.driver, mail);
         Thread.sleep(1000);
 
     }
     @And("^user Enters Password\"(.*)\"$")
     public void enter_password(String ps) throws InterruptedException {
 
-        shoppingCartPage.ps(driver,ps);
+        shoppingCartPage.ps(hooksPage.driver, ps);
         Thread.sleep(1000);
 
     }
     @And("user Clicks on login button")
     public void click_login() throws InterruptedException {
-        shoppingCartPage.loginButton(driver);
+        shoppingCartPage.loginButton(hooksPage.driver);
         Thread.sleep(1000);
     }
 
     @And("user Chooses category")
     public void category_page(){
-        shoppingCartPage.chooseCategory(driver);
+        shoppingCartPage.chooseCategory(hooksPage.driver);
 
     }
 //    @And("user Chooses sub category")
@@ -70,51 +60,51 @@ public class ShoppingCartSteps {
 //    }
     @And("choose the first product")
     public void first_product(){
-        shoppingCartPage.choosefirstProduct(driver);
+        shoppingCartPage.choosefirstProduct(hooksPage.driver);
     }
 
     @And("user Add item")
     public void add_item() throws InterruptedException {
-        shoppingCartPage.addfirstproduct(driver);
+        shoppingCartPage.addfirstproduct(hooksPage.driver);
         //Thread.sleep(3000);
 
     }
     @And("user choose another category")
     public void another_category(){
-        shoppingCartPage.choosesecondCategory(driver);
+        shoppingCartPage.choosesecondCategory(hooksPage.driver);
 
     }
     @And("user go to the sub category")
     public void second_subcategory() {
-        shoppingCartPage.choosesecondsubCategory(driver);
+        shoppingCartPage.choosesecondsubCategory(hooksPage.driver);
     }
     @And("choose the second product")
     public void second_product(){
-        shoppingCartPage.choosesecondProduct(driver);
+        shoppingCartPage.choosesecondProduct(hooksPage.driver);
     }
     @And("user Add another Item")
     public void addanother_item(){
-        shoppingCartPage.addSecondProduct(driver);
+        shoppingCartPage.addSecondProduct(hooksPage.driver);
 
     }
     @Then("user click his shopping cart")
     public void click_cart(){
-        shoppingCartPage.clickShoppingCart(driver);
+        shoppingCartPage.clickShoppingCart(hooksPage.driver);
 
     }
     @And("user is redirected to the shopping cart")
     public void shopping_cart() throws InterruptedException {
 
         //this assertion to check the url
-        Assert.assertEquals("https://demo.nopcommerce.com/cart", driver.getCurrentUrl());
+        Assert.assertEquals("https://demo.nopcommerce.com/cart", hooksPage.driver.getCurrentUrl());
         Thread.sleep(1000);
 
     }
-    @And("close  Browser")
+    @And("close the browser")
     public void close_browser() throws InterruptedException {
 
 
-        driver.quit();
+        hooksPage.CloseBrowser();
     }
 
 

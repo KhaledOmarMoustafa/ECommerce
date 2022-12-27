@@ -10,82 +10,72 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.CategoriesPage;
 import pages.FilterPage;
+import pages.HooksPage;
 
 public class FilterSteps {
-    FilterPage filter ;
+    FilterPage filter = new FilterPage() ;
 
-    WebDriver driver;
-
+  HooksPage hooksPage = new HooksPage();
     @Given("open the browser")
     public void open_browser() throws InterruptedException {
-        driver =  new ChromeDriver();
-        filter = new FilterPage();
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
 
-
-        driver.manage().window().maximize();
-        Thread.sleep(3000);
-
-
-        driver.navigate().to("https://demo.nopcommerce.com/");
-
+        hooksPage.OpenBrowser();
     }
     @When("click on the login button")
     public void login() throws InterruptedException {
 
-        filter.clickLogin(driver);
+        filter.clickLogin(hooksPage.driver);
         Thread.sleep(1000);
 
 
     }
     @And("^Email\"(.*)\"$")
     public void enter_email(String mail) throws InterruptedException {
-        filter.eml(driver,mail);
+        filter.eml(hooksPage.driver, mail);
         Thread.sleep(1000);
 
     }
     @And("^Password\"(.*)\"$")
     public void enter_password(String ps) throws InterruptedException {
 
-        filter.ps(driver,ps);
+        filter.ps(hooksPage.driver, ps);
         Thread.sleep(1000);
 
     }
     @And("click login button")
     public void click_login() throws InterruptedException {
-        filter.loginButton(driver);
+        filter.loginButton(hooksPage.driver);
         Thread.sleep(1000);
     }
 
     @And("user choose category")
     public void category_page(){
-        filter.chooseCategory(driver);
+        filter.chooseCategory(hooksPage.driver);
 
     }
     @And("user choose a sub category")
     public void subcategory_page(){
-        filter.choosesubCategory(driver);
+        filter.choosesubCategory(hooksPage.driver);
 
     }
     @And("user Choose a color")
     public void subcategoryColor_page(){
-        filter.choosesubColor(driver);
+        filter.choosesubColor(hooksPage.driver);
 
     }
     @Then("page is filtered by color")
     public void filtered_color() throws InterruptedException {
 
         //this assertion to check the url
-        Assert.assertEquals("https://demo.nopcommerce.com/shoes?viewmode=grid&orderby=0&pagesize=6&specs=15", driver.getCurrentUrl());
+        Assert.assertEquals("https://demo.nopcommerce.com/shoes?viewmode=grid&orderby=0&pagesize=6&specs=15", hooksPage.driver.getCurrentUrl());
         Thread.sleep(1000);
 
     }
-    @And("close The Browser")
+    @And("user close the Browser")
     public void close_browser() throws InterruptedException {
 
 
-        driver.quit();
+        hooksPage.CloseBrowser();
     }
 
 

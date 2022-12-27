@@ -12,9 +12,9 @@ import pages.SuccessfulOrderPage;
 import pages.WishListPage;
 
 public class SuccessfulOrderSteps {
-    SuccessfulOrderPage successfulOrderPage;
+    SuccessfulOrderPage successfulOrderPage= new SuccessfulOrderPage();
 
-    WebDriver driver;
+    WebDriver driver = new ChromeDriver();
 
     @Given("User Open Browser")
     public void open_browser() throws InterruptedException {
@@ -145,7 +145,7 @@ public class SuccessfulOrderSteps {
         Thread.sleep(1000);
 
     }
-    @And("Close the Browser")
+    @After
     public void close_browser() throws InterruptedException {
 
 

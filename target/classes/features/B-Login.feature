@@ -8,4 +8,4 @@ Feature: User can login with valid email and password
     And Entering the Password"Ah2352352"
     And user click login
     Then User is Able to login and redirected to the home page
-    And user quits the Browser
+

@@ -12,4 +12,4 @@ Feature: Switch Currency
     And user clicks login
     And click currencies
     Then choose the Euro currency
-    And Close the browser
+    And user Close the browser

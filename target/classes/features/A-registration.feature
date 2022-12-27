@@ -20,4 +20,4 @@ Feature: User could register with valid data
     And confirm his password"Ah2352352"
  Then user registered successfuly
     And user go to home page
-    And user quit the Browser
+   

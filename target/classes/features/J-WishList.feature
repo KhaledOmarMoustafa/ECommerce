@@ -17,4 +17,4 @@ Feature: Add different products to the Wish list
     And user Add another Item to the wish list
     Then user Click his wish list
     And user is redirected to the wish list page
-    And user Close the Browser
+    And browser is closed

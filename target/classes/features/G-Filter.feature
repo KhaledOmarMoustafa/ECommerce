@@ -12,4 +12,5 @@ Feature: Filter By the Color
     And user choose a sub category
     And user Choose a color
     Then page is filtered by color
-    And close The Browser
+
+    And user close the Browser

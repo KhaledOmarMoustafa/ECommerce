@@ -9,4 +9,5 @@ Feature: User Try to reset his password
     And user Enter His email"ziad.dawood@gmail.com"
     And User click recover
     Then a message appears to the user to reset his Password
-    And close the Browser
+
+    And user exit the browser

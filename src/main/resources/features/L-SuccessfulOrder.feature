@@ -23,4 +23,3 @@ Feature: user create his first successful order
     And Click on continue for last time
     And click on confirm
     Then user is redirected to the confirmation screen and get the order number
-    And Close the Browser

@@ -8,64 +8,55 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.HooksPage;
 import pages.RegisterPage;
 
 public class RegistrationSteps {
-    RegisterPage register ;
+    RegisterPage register = new RegisterPage();
+    HooksPage hooksPage = new HooksPage( );
 
-    WebDriver driver ;
 
     @Given("user open browser and go to home page")
     public void open_browser() throws InterruptedException {
-        driver =  new ChromeDriver();
-        register =  new RegisterPage();
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
 
-
-        driver.manage().window().maximize();
-        Thread.sleep(3000);
-
-
-        driver.navigate().to("https://demo.nopcommerce.com/");
-
+        hooksPage.OpenBrowser();
     }
     @When("user click on Register")
     public void register_button() throws InterruptedException {
 
-       register.clickRegister(driver);
+       register.clickRegister(hooksPage.driver);
         Thread.sleep(1000);
 
 
     }
     @And("choose the gender")
     public void chooseGender() throws InterruptedException {
-        register.chooseGender(driver);
+        register.chooseGender(hooksPage.driver);
         Thread.sleep(1000);
 
     }
     @And("^enter his first name\"(.*)\"$")
     public void first_name(String userName) throws InterruptedException {
 
-        register.LoginSteps(driver,userName);
+        register.LoginSteps(hooksPage.driver, userName);
         Thread.sleep(1000);
 
     }
     @And("^enter his last name\"(.*)\"$")
     public void last_name(String secondname) throws InterruptedException {
 
-        register.scndname(driver,secondname);
+        register.scndname(hooksPage.driver, secondname);
         Thread.sleep(1000);
     }
     @And("enter his date of birth")
     public void date_birth() throws InterruptedException {
 
-        register.dayofBirth(driver  );
-        register.chooseDayEle(driver);
-        register.monthOfBirth(driver);
-        register.month(driver);
-        register.yearOfBirth(driver);
-        register.year(driver);
+        register.dayofBirth(hooksPage.driver  );
+        register.chooseDayEle(hooksPage.driver);
+        register.monthOfBirth(hooksPage.driver);
+        register.month(hooksPage.driver);
+        register.yearOfBirth(hooksPage.driver);
+        register.year(hooksPage.driver);
 
         Thread.sleep(3000);
 
@@ -74,7 +65,7 @@ public class RegistrationSteps {
     public void email(String email) throws InterruptedException {
 
 
-          register.eml(driver,email);
+          register.eml(hooksPage.driver, email);
         Thread.sleep(1000);
 
 
@@ -82,25 +73,25 @@ public class RegistrationSteps {
     @And("^enter his company name\"(.*)\"$")
     public void company(String companyName) throws InterruptedException {
 
-        register.cmname(driver,companyName);
+        register.cmname(hooksPage.driver, companyName);
         Thread.sleep(1000);
 
     }
     @And("^enter his password\"(.*)\"$")
     public void password(String password) throws InterruptedException {
 
-        register.psword(driver,password);
+        register.psword(hooksPage.driver, password);
         Thread.sleep(1000);
     }
     @And("^confirm his password\"(.*)\"$")
     public void confirmPassword(String confirm) throws InterruptedException {
 
-        register.confirmpsword(driver,confirm);
+        register.confirmpsword(hooksPage.driver, confirm);
         Thread.sleep(1000);
     }
     @Then("user registered successfuly")
     public void registerButton() throws InterruptedException {
-        register.clickButton(driver);
+        register.clickButton(hooksPage.driver);
 
         Thread.sleep(1000);
     }
@@ -109,7 +100,7 @@ public class RegistrationSteps {
     public void home_page() throws InterruptedException {
 
         //this assertion to check the url
-        Assert.assertEquals("https://demo.nopcommerce.com/registerresult/1?returnUrl=/", driver.getCurrentUrl());
+        Assert.assertEquals("https://demo.nopcommerce.com/registerresult/1?returnUrl=/", hooksPage.driver.getCurrentUrl());
         Thread.sleep(1000);
 
 
@@ -118,7 +109,7 @@ public class RegistrationSteps {
     public void close_browser() throws InterruptedException {
 
 
-        driver.quit();
+        hooksPage.CloseBrowser();
     }
 
 
