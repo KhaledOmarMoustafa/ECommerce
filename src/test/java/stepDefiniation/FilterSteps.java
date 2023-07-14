@@ -1,14 +1,10 @@
 package stepDefiniation;
 
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pages.CategoriesPage;
 import pages.FilterPage;
 import pages.HooksPage;
 
@@ -68,7 +64,7 @@ public class FilterSteps {
 
         //this assertion to check the url
         Assert.assertEquals("https://demo.nopcommerce.com/shoes?viewmode=grid&orderby=0&pagesize=6&specs=15", hooksPage.driver.getCurrentUrl());
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
     }
     @And("user close the Browser")
